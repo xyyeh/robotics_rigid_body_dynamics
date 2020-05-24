@@ -1,0 +1,6 @@
+build/
+bin/
+config.h
+lib/lib*
+doc/html
+.vscode
