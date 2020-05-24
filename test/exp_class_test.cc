@@ -2,10 +2,10 @@
 #include <iostream>
 #include <string>
 
-#include "robotics/exp_proj/exp_class.h"
+#include "robotics/rigid_body_dynamics/rigid_body_dynamics.h"
 
 namespace robotics {
-namespace exp_proj {
+namespace rigid_body_dynamics {
 // Test from google test primer
 // https://github.com/google/googletest/blob/master/googletest/docs/primer.md
 
@@ -23,7 +23,7 @@ class ExpClassTest : public ::testing::Test {
   virtual void TearDown() {}
 
   // Test subject
-  ExpClass test_subject_;
+  RBDyn test_subject_;
 };
 
 // test integer equality
@@ -37,5 +37,5 @@ TEST_F(ExpClassTest, CheckClassMethod) {
   int x = 1;
   EXPECT_EQ(x, 1);
 }
-}  // namespace exp_proj
+}  // namespace rigid_body_dynamics
 }  // namespace robotics

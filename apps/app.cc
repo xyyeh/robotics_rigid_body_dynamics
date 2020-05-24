@@ -3,16 +3,16 @@
  *
  */
 
-#include <robotics/exp_proj/config.h>
-#include <robotics/exp_proj/exp_class.h>
+#include <robotics/rigid_body_dynamics/config.h>
+#include <robotics/rigid_body_dynamics/exp_class.h>
 
 #include <iostream>
 
 int main() {
   std::cout << "Version: ";
-  std::cout << ROBOTICS_EXP_PROJ_VERSION_MAJOR << ".";
-  std::cout << ROBOTICS_EXP_PROJ_VERSION_MINOR << ".";
-  std::cout << ROBOTICS_EXP_PROJ_VERSION_PATCH << std::endl;
+  std::cout << ROBOTICS_RIGID_BODY_DYNAMICS_VERSION_MAJOR << ".";
+  std::cout << ROBOTICS_RIGID_BODY_DYNAMICS_VERSION_MINOR << ".";
+  std::cout << ROBOTICS_RIGID_BODY_DYNAMICS_VERSION_PATCH << std::endl;
 
-  robotics::exp_proj::ExpClass a;
+  robotics::rigid_body_dynamics::ExpClass a;
 }

@@ -20,7 +20,7 @@ endif()
 # 1.x.x - update if incompatible API changes are made
 # x.1.x - update if changes are backward compatible
 # x.x.1 - update if backward compatible bug fixes are made
-project(robotics_exp_proj VERSION 1.0.0)
+project(robotics_rigid_body_dynamics VERSION 1.0.0)
 
 # third party options
 option(BUILD_THIRD_PARTY "Build third party dependencies" OFF)
@@ -36,9 +36,22 @@ option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 if(${BUILD_THIRD_PARTY})
     include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/cmake_tools/BuildThirdParty.cmake)
 
+    find_package(SpaceVecAlg HINTS ${CMAKE_INSTALL_PREFIX})
+    if(NOT ${SpaceVecAlg_FOUND})
+        BuildThirdParty(${CMAKE_CURRENT_SOURCE_DIR}/third_party/build_SpaceVecAlg.sh)
+    else()
+        message(STATUS "Found SpaceVecAlg at ${SpaceVecAlg_DIR}")
+    endif()
+    
+    find_package(RBDyn HINTS ${CMAKE_INSTALL_PREFIX})
+    if(NOT ${RBDyn_FOUND})
+        BuildThirdParty(${CMAKE_CURRENT_SOURCE_DIR}/third_party/build_RBDyn.sh)
+    else()
+        message(STATUS "Found RBDyn at ${RBDyn_DIR}")
+    endif()
+
     find_package(spdlog 1.6.0 HINTS ${CMAKE_INSTALL_PREFIX})
     if(NOT ${spdlog_FOUND})
-        message(STATUS "Fetching spdlog")
         BuildThirdParty(${CMAKE_CURRENT_SOURCE_DIR}/third_party/build_spdlog.sh)
     else()
         message(STATUS "Found spdlog at ${spdlog_DIR}")
@@ -50,7 +63,7 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/cmake_tools/GitVersion.cmake)
 GitVersion()
 configure_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/cmake/config.h.in"
-    "${CMAKE_CURRENT_SOURCE_DIR}/include/robotics/exp_proj/config.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/robotics/rigid_body_dynamics/config.h"
 )
 
 # set location where static (archive) and shared libraries are built
@@ -87,7 +100,7 @@ target_compile_options(${PROJECT_NAME} PRIVATE -Werror)
 # target_compile_features(${PROJECT_NAME} PRIVATE cxx_lambdas)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
-# setup dependencies
+# setup internal dependencies
 # public dependencies will be used in headers and their interface is offerred to clients
 # private dependencies will be used in source and their interface is not offerred to clients
 if (${BUILD_THIRD_PARTY})
@@ -104,10 +117,22 @@ else()
     # find_package(robotics_x REQUIRED)
 endif()
 
+# setup external dependencies
+find_package(SpaceVecAlg REQUIRED HINTS ${CMAKE_INSTALL_PREFIX})
+find_package(RBDyn REQUIRED HINTS ${CMAKE_INSTALL_PREFIX})
+find_package(spdlog REQUIRED HINTS ${CMAKE_INSTALL_PREFIX})
+
+# link dependencies
+target_link_libraries(${PROJECT_NAME}
+    PUBLIC
+        RBDyn::RBDyn
+        SpaceVecAlg::SpaceVecAlg
+        spdlog::spdlog
+)
+
 # install library
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/cmake_tools/InstallLibrary.cmake)
 InstallLibrary()
-
 
 # test
 # add more tests using add_test(). BUILD_TESTING is automatically set ON by CTest

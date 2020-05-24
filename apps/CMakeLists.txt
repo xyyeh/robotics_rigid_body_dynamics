@@ -22,9 +22,9 @@ file(GLOB SRC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/*.cc)
 add_executable(${PROJECT_NAME} ${SRC_FILES})
 
 # setup dependencies
-find_package(robotics_exp_proj REQUIRED)
+find_package(robotics_rigid_body_dynamics REQUIRED)
 target_link_libraries(${PROJECT_NAME}
-  robotics::robotics_exp_proj
+  robotics::robotics_rigid_body_dynamics
 )
 
 # set cmake compile features
