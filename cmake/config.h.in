@@ -1,15 +1,15 @@
 /* Configuration file for this project */
 
-#ifndef ROBOTICS_EXP_PROJ_CONFIG_H_
-#define ROBOTICS_EXP_PROJ_CONFIG_H_
+#ifndef ROBOTICS_RIGID_BODY_DYNAMICS_CONFIG_H_
+#define ROBOTICS_RIGID_BODY_DYNAMICS_CONFIG_H_
 
 // clang-format off
-#define ROBOTICS_EXP_PROJ_VERSION_MAJOR @robotics_exp_proj_VERSION_MAJOR@
-#define ROBOTICS_EXP_PROJ_VERSION_MINOR @robotics_exp_proj_VERSION_MINOR@
-#define ROBOTICS_EXP_PROJ_VERSION_PATCH @robotics_exp_proj_VERSION_PATCH@
+#define ROBOTICS_RIGID_BODY_DYNAMICS_VERSION_MAJOR @robotics_rigid_body_dynamics_VERSION_MAJOR@
+#define ROBOTICS_RIGID_BODY_DYNAMICS_VERSION_MINOR @robotics_rigid_body_dynamics_VERSION_MINOR@
+#define ROBOTICS_RIGID_BODY_DYNAMICS_VERSION_PATCH @robotics_rigid_body_dynamics_VERSION_PATCH@
 // clang-format on
 
-#define ROBOTICS_EXP_PROJ_GIT_BRANCH "@robotics_exp_proj_GIT_BRANCH@"
-#define ROBOTICS_EXP_PROJ_COMMIT_HASH "@robotics_exp_proj_GIT_COMMIT_HASH@"
+#define ROBOTICS_RIGID_BODY_DYNAMICS_GIT_BRANCH "@robotics_rigid_body_dynamics_GIT_BRANCH@"
+#define ROBOTICS_RIGID_BODY_DYNAMICS_COMMIT_HASH "@robotics_rigid_body_dynamics_GIT_COMMIT_HASH@"
 
 #endif

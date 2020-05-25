@@ -2,7 +2,9 @@ include(CMakeFindDependencyMacro)
 
 # finds dependencies
 # user: add in all dependencies here
-# find_dependency(robotics_exp_lib REQUIRED)
+find_dependency(SpaceVecAlg REQUIRED)
+find_dependency(RBDyn REQUIRED)
+find_dependency(spdlog REQUIRED)
 
 # targets file
 include("${CMAKE_CURRENT_LIST_DIR}/@PROJECT_NAME@-targets.cmake")
