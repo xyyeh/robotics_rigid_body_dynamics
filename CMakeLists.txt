@@ -128,6 +128,8 @@ target_link_libraries(${PROJECT_NAME}
         RBDyn::RBDyn
         SpaceVecAlg::SpaceVecAlg
         spdlog::spdlog
+    PRIVATE
+        RBDyn::Parsers
 )
 
 # install library

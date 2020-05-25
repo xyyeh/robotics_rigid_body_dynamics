@@ -58,6 +58,10 @@ void RBDyn::ForwardKinematics() {
 void RBDyn::EndEffPose(Eigen::MatrixXd& O_T_ee, const std::string& body_name,
                        const Eigen::Matrix3d& ofs_rotation,
                        const Eigen::Vector3d& ofs_position) {
+  ASSERT(O_T_ee.rows() == O_T_ee.cols(),
+         "row-column sizes mismatch for transformation matrix");
+  ASSERT(O_T_ee.rows() == 4, "incorrect size for transformation matrix");
+
   auto index = BodyIdFromName(body_name);
   ASSERT(index >= 0, body_name << " not found.");
 
@@ -66,7 +70,6 @@ void RBDyn::EndEffPose(Eigen::MatrixXd& O_T_ee, const std::string& body_name,
   sva::PTransformd ee_X_O = ee_X_i * mbc_.bodyPosW[index];
 
   // construct O_T_ee
-  O_T_ee.resize(4, 4);
   O_T_ee.setIdentity();
   O_T_ee.block<3, 3>(0, 0) = ee_X_O.rotation().transpose();
   O_T_ee.block<3, 1>(0, 3) = ee_X_O.translation();

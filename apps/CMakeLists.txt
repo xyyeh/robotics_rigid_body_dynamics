@@ -6,12 +6,12 @@ cmake_minimum_required(VERSION 3.2)
 include(CMakePrintHelpers)
 
 # project configuration
-project(robotics_exp_app)
+project(example_app)
 
 # project options
 
 # project default settings
-include(${CMAKE_CURRENT_SOURCE_DIR}/../cmake/Cmake_tools/DefaultBuildType.cmake)
+include(${CMAKE_CURRENT_SOURCE_DIR}/../cmake/cmake_tools/DefaultBuildType.cmake)
 DefaultBuildType()
 
 # setup executable
